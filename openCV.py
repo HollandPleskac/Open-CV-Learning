@@ -128,6 +128,8 @@ import matplotlib.pyplot as plt
 # cv2.destroyAllWindows() # close all windows
 
 # --------------------------------------------------------------------- FEATURE DETECTION --------------------------------------------------------------
+# Resources from : https://github.com/opencv/opencv/tree/master/data/haarcascades
+
 
 # Face Detection Image
 
@@ -255,11 +257,11 @@ import matplotlib.pyplot as plt
 # cap.release() # stop capture
 # cv2.destroyAllWindows() # close all windows
 
-# Smile Detection with Face Detection Video
+# Smile/Eye Detection with Face Detection Video
 
 cap = cv2.VideoCapture(0) # can be an existing video file or port number of webcam
 faceCascade = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
-smileCascade = cv2.CascadeClassifier('haarcascade_smile.xml')
+smileCascade = cv2.CascadeClassifier('haarcascade_smile.xml') # change to haarcascade_eye.xml to detect eyes!
 
 while True: # show video forever
   ret,frame = cap.read() # read the video feed frame by frame
@@ -282,7 +284,7 @@ while True: # show video forever
         height_smile = smile[3]
         print(x1_smile, y1_smile, width_smile, height_smile)
         cv2.rectangle(frame, (x1_smile,y1_smile), (x1_smile+width_smile,y1_smile+height_smile), (0,229,123), 2)
-      cv2.imshow('ROI', roi)
+      # cv2.imshow('ROI', roi)
     cv2.imshow("Video", frame) # show video feed
       
     if cv2.waitKey(1)==ord('q'): # if q key is pressed
